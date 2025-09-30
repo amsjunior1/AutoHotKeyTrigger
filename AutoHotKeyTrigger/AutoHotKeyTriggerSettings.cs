@@ -41,10 +41,11 @@ namespace AutoHotKeyTrigger
             this.DebugMode = false;
             this.ShouldRunInHideout = false;
             this.DumpStatusEffectOnMe = VK.F10;
+            this.EnableHybridControllerMode = false;
         }
 
         /// <summary>
-        ///    Gets a value indicating whether to enable or disable the auto-quit feature.
+        ///    Gets or sets a value indicating whether to enable or disable the auto-quit feature.
         /// </summary>
         public bool EnableAutoQuit;
 
@@ -54,12 +55,17 @@ namespace AutoHotKeyTrigger
         public DynamicCondition AutoQuitCondition;
 
         /// <summary>
-        ///     Gets a value indicating whether to enable or disable the auto-quit key or not.
+        ///     Gets or sets a value indicating whether to enable the controller mirroring feature.
+        /// </summary>
+        public bool EnableHybridControllerMode { get; set; }
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether to enable or disable the auto-quit key or not.
         /// </summary>
         public bool EnableAutoQuitKey;
 
         /// <summary>
-        ///     Gets a key which allows the user to manually quit the game Connection.
+        ///     Gets or sets a key which allows the user to manually quit the game Connection.
         /// </summary>
         public VK AutoQuitKey;
 
@@ -69,22 +75,22 @@ namespace AutoHotKeyTrigger
         public readonly Dictionary<string, Profile> Profiles;
 
         /// <summary>
-        ///     Gets the currently selected profile.
+        ///     Gets or sets the currently selected profile.
         /// </summary>
         public string CurrentProfile;
 
         /// <summary>
-        ///     Gets a value indicating weather the debug mode is enabled or not.
+        ///     Gets or sets a value indicating weather the debug mode is enabled or not.
         /// </summary>
         public bool DebugMode;
 
         /// <summary>
-        ///     Gets a value indicating weather this plugin should work in hideout or not.
+        ///     Gets or sets a value indicating weather this plugin should work in hideout or not.
         /// </summary>
         public bool ShouldRunInHideout;
 
         /// <summary>
-        ///     Gets a value indicating weather user wants to dump the player
+        ///     Gets or sets a value indicating weather user wants to dump the player
         ///     status effect or not.
         /// </summary>
         public VK DumpStatusEffectOnMe;

@@ -1,0 +1,99 @@
+[Guide] How to Set Up Full Controller Support for GameHelper Automation
+
+This guide will walk you through the complete setup process for using a physical controller (like a PS3 DualShock 3 or an Xbox 360 controller) to both play the game and run automated actions through the AutoHotKeyTrigger plugin in GameHelper.
+
+This setup uses a virtual controller to send commands to the game, while your physical controller is used for input mirroring and manual play. This requires hiding the physical controller from the game to prevent conflicts and double input.
+
+Requirements (Download and Install First!)
+
+Before you begin, you must download and install the following three essential drivers:
+
+    ViGEmBus Driver: This is the core component that creates the virtual Xbox 360 controller.
+
+        Download: Latest ViGEmBus Release on GitHub (Download and run the ViGEmBus_Setup_x64.msi installer).
+
+    HidHide Driver: This is the tool used to hide your physical controller from the game, which is critical for this setup to work.
+
+        Download: Latest HidHide Release on GitHub (Download and run the HidHide_setup_x64.exe installer).
+
+    Physical Controller Driver (Choose one):
+
+        For PS3/DualShock 3 Controllers: You must use DsHidMini.
+
+            Download: Latest DsHidMini Release on GitHub (Download and run the DsHidMini_Setup_x64.msi installer).
+
+        For Xbox 360/Xbox One Controllers: Windows has built-in drivers. No installation is needed.
+
+Installation and Configuration Order (Step-by-Step)
+
+Follow these steps in the exact order.
+
+Step 1: Configure Your Physical Controller (For PS3 Users Only)
+
+If you are using a PS3 controller, you must configure DsHidMini correctly.
+
+    Connect your PS3 controller via USB.
+
+    Open the DsHidMini Control application (usually located in C:\Program Files\Nefarius Software Solutions\DsHidMini).
+
+    You will see your connected controller in the list. Select it.
+
+    In the options for the controller, find "HID Device Mode".
+
+    Change the mode to SXS (XInput Gamepad). This is the most important step for compatibility.
+
+    Click Apply/Save and disconnect/reconnect your controller.
+
+    To verify, open the Windows Game Controllers panel (Win + R, type joy.cpl). Your controller should now appear as a "Controller (Xbox 360 For Windows)".
+
+Step 2: Configure HidHide
+
+This step hides your physical controller from the game, allowing only GameHelper to see it.
+
+    Open the HidHide Configuration Client.
+
+    Go to the Devices tab.
+
+    You will see a list of all controllers. Find your physical controller (it will now be listed as "Controller (Xbox 360 For Windows)" or "Sony PLAYSTATION(R)3 Controller") and check the box next to it to hide it.
+
+    Go to the Applications tab.
+
+    Click the + icon and add the GameHelper.exe executable to the list.
+
+    IMPORTANT: Ensure that ONLY GameHelper.exe is on this list. Do not add the game's executable (PathOfExile_x64.exe) or any game launchers.
+
+    At the bottom of the window, make sure the "Enable device hiding" checkbox is checked.
+
+Step 3: Install the AutoHotKeyTrigger Plugin
+
+    Make sure you have the latest version of the AutoHotKeyTrigger plugin folder.
+
+    Place this folder inside your GameHelper/Plugins/Compiled/ directory.
+
+How to Run (The Final Workflow)
+
+    Ensure your physical controller is connected.
+
+    Ensure HidHide is active with the correct configuration from Step 2.
+
+    Start GameHelper.exe.
+
+    In the GameHelper UI, go to the AutoHotKeyTrigger plugin settings tab.
+
+    Find the "Controller Settings" section and check the box for "Enable Hybrid Controller Mode".
+
+    The plugin will prompt you to restart. Close and restart GameHelper.exe.
+
+    Once GameHelper has restarted with Hybrid Mode active, you can launch Path of Exile.
+
+Your controller should now control the game through the virtual controller, and all your automated rules in the plugin will function correctly.
+
+Troubleshooting
+
+    "My virtual controller appears in Windows, but it doesn't respond to my physical controller."
+
+        This is almost always caused by an incorrect driver mode. For PS3 controllers, ensure you have set the mode to SXS (XInput Gamepad) in the DsHidMini Control utility as described in Step 1.
+
+    "The game still sees two controllers, or my character moves on its own."
+
+        This means HidHide is not configured correctly. Double-check Step 2. Make sure the correct device is hidden on the Devices tab and that ONLY GameHelper.exe is on the Applications tab whitelist.
